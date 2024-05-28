@@ -1,7 +1,4 @@
 <template>
-  <header>
-    <RouterLink to="/">LEE BOKYEONG</RouterLink>
-  </header>
   <main>
     <RouterView />
   </main>
