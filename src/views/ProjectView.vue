@@ -1,39 +1,94 @@
 <template>
     <div class="article-container">
         <p class="article-title highlight">{{ store.selectedProject.title }}</p>
-        <div v-for="detail in store.selectedProject.details" class="card-container" style="max-width: 1020px;">
-            <div class="card gap-5">
-                <div class="img-container col-md-8">
-                    <img :src="imgSrc(detail.src)">
+        <p class="description">{{ store.selectedProject.description }}</p>
+        <div v-for="(detail, detailIndex) in store.selectedProject.details" :key="detailIndex" class="card-container" style="max-width: 1020px;">
+            <div class="card">
+                <div class="img-container col-md-8" :ref="'carouselContainer' + detailIndex">
+                    <div v-if="detail.src.length === 1">
+                        <img :src="imgSrc(detail.src[0])" class="carousel-img">
+                    </div>
+                    <div v-else>
+                        <div :id="'carouselExampleIndicators' + detailIndex" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button v-for="(source, index) in detail.src" :key="'indicator-' + index"
+                                        type="button" :data-bs-target="'#carouselExampleIndicators' + detailIndex"
+                                        :data-bs-slide-to="index" :class="{ active: index === 0 }" aria-current="true"
+                                        :aria-label="'Slide ' + (index + 1)"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div v-for="(source, index) in detail.src" :key="index" :class="['carousel-item', { 'active': index === 0 }]">
+                                    <img :src="imgSrc(source)" class="d-block w-100 carousel-img">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleIndicators' + detailIndex" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExampleIndicators' + detailIndex" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="title-container col-md-3">
+                <div class="title-container col-md-4">
                     <div class="card-title project-title">{{ detail.title }}</div>
                     <div class="card-text">{{ detail.description }}</div>
                 </div>
             </div>
         </div>
     </div>
-
 </template>
-
 <script setup>
+import { onMounted, nextTick } from 'vue';
 import { useProjectStore } from '@/stores/project';
 
 const store = useProjectStore();
 
-const imgSrc = function(mainImage) {
+const imgSrc = function (mainImage) {
     return `src/assets/${mainImage}`
 }
 
-</script>
+const setMaxHeightForCarousels = async () => {
+    await nextTick();
+    const carousels = document.querySelectorAll('.carousel-inner');
+    carousels.forEach(carousel => {
+        const images = carousel.querySelectorAll('img');
+        let maxHeight = 0;
 
+        images.forEach(img => {
+            img.onload = () => {
+                if (img.clientHeight > maxHeight) {
+                    maxHeight = img.clientHeight;
+                }
+                carousel.style.height = `${maxHeight}px`;
+            }
+        });
+    });
+}
+
+onMounted(() => {
+    setMaxHeightForCarousels();
+});
+</script>
 <style scoped>
+.description {
+    color: white; 
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: 50px;
+    word-break: keep-all;
+}
+
 .card {
     display: flex;
     flex-direction: row;
     align-items: center;
     word-break: keep-all;
     margin-bottom: 50px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .article-container {
@@ -78,6 +133,7 @@ const imgSrc = function(mainImage) {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    flex: 2;
 }
 
 .img-container img {
@@ -94,7 +150,7 @@ const imgSrc = function(mainImage) {
 }
 
 .article-title {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .card-title {
@@ -114,5 +170,25 @@ const imgSrc = function(mainImage) {
 
 .card {
     background-color: white;
+}
+
+.carousel-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.carousel-inner img {
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
 }
 </style>
