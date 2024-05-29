@@ -42,7 +42,7 @@
         <span v-if="store.selectedProject.blogUrl">
             <a :href="store.selectedProject.blogUrl" target="_blank">회고 살펴보기</a>
         </span> | 
-        <a href="/">홈으로 돌아가기</a>
+        <a href="/portfolio">홈으로 돌아가기</a>
         </span>
     </div>
 </template>
