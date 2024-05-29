@@ -10,7 +10,7 @@ export const useProjectStore = defineStore('project', () => {
     introduce: "2024.05 (2인 프로젝트)",
     description: "유튜브에 등록된 운동 영상을 기반으로 나만의 챌린지를 생성하고 운동 크루를 조직하는 웹사이트입니다. \n MySQL을 바탕으로 DB를 설계하였으며, 작성한 API 명세서를 토대로 한 Springboot MVC 구현 및 AWS 배포를 담당하였습니다.",
     mainImage: "kkrewpumping_main.png",
-    githubUrl: "",
+    githubUrl: "https://github.com/kyeong8139/kkrewpumping_public",
     functions: ["회원가입(카카오 로그인 지원)", "메일 인증을 통한 비밀번호 재설정", "영상 및 챌린지 CRUD (유튜브 API 및 자체 DB 활용)", "크루 등록 및 가입",
       "AI 운동 추천 서비스"],
     details: [
@@ -25,26 +25,27 @@ export const useProjectStore = defineStore('project', () => {
         src: ["/kkrewpumping/kkrew_API.png", "/kkrewpumping/kkrew_API_detail.png"]
       },
       {
-        title: "데이터 CRUD 구현",
+        title: "데이터 CRUD",
         description: "MVC 아키텍쳐를 활용하여 RESTful API를 구현하였습니다.",
-        src: []
+        src: ["/kkrewpumping/kkrew_CRUD_dao.png", "/kkrewpumping/kkrew_CRUD_service.png", "/kkrewpumping/kkrew_CRUD_controller.png"]
       },
       {
-        title: "회원가입 및 로그인",
-        description: "사이트 자체 회원가입을 할 경우 SHA-256 암호화를 통해 안전하게 비밀번호를 보관하였습니다. 비밀번호 재설정을 위한 이메일 인증또한 구현하여 사용자 경험을 향상시키고자 하였습니다.",
-        src: []
+        title: "회원가입/로그인",
+        description: "사이트 자체 회원가입을 할 경우 KISA에서 배포한 SHA-256 소스코드를 활용하여 안전하게 비밀번호를 보관하였습니다. 비밀번호 재설정을 위한 이메일 인증또한 구현하여 사용자 경험을 향상시키고자 하였습니다.",
+        src: ["/kkrewpumping/kkrew_SHA256.png", "/kkrewpumping/kkrew_mailutil.png", "/kkrewpumping/kkrew_mail.png"]
       },
       {
-        title : "카카오 소셜 로그인",
+        title : "카카오 로그인",
         description : "카카오 소셜 로그인의 경우, FRONT에서 발급받은 인가 코드를 이용하여 access-token을 발급 받고, 토큰으로 사용자 정보를 가져와 자체 JWT토큰을 발급하도록 구현하였습니다. ",
-        src : []
+        src : ["/kkrewpumping/kkrew_kakao_controller.png", "/kkrewpumping/kkrew_kakaocode.png", "/kkrewpumping/kkrew_kakao_login.png"]
       },
       {
         title : "AWS 배포",
-        description : "AWS EC2를 이용해 DB와 백, 프론트 서버를 구축하였습니다. 서버의 부담이 컸기 때문에 storage의 일부를 ram으로 전환하여 활용하였습니다.",
-        src : []
+        description : "AWS EC2를 이용해 DB와 백, 프론트 서버를 구축하였습니다. 서버의 부담이 컸기 때문에 추후 storage의 일부를 ram으로 전환하여 활용하였습니다.",
+        src : ["/kkrewpumping/kkrew_ec2.png"]
       }
-    ]
+    ],
+    blogUrl : "https://kyeong8139.tistory.com/62"
   }
 
   const wordle = {

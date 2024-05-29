@@ -38,8 +38,15 @@
                 </div>
             </div>
         </div>
+        <span>
+        <span v-if="store.selectedProject.blogUrl">
+            <a :href="store.selectedProject.blogUrl" target="_blank">회고 살펴보기</a>
+        </span> | 
+        <a href="/">홈으로 돌아가기</a>
+        </span>
     </div>
 </template>
+
 <script setup>
 import { onMounted, nextTick } from 'vue';
 import { useProjectStore } from '@/stores/project';
@@ -61,8 +68,8 @@ const setMaxHeightForCarousels = async () => {
             img.onload = () => {
                 if (img.clientHeight > maxHeight) {
                     maxHeight = img.clientHeight;
+                    carousel.style.height = `${maxHeight}px`;
                 }
-                carousel.style.height = `${maxHeight}px`;
             }
         });
     });
@@ -174,7 +181,7 @@ onMounted(() => {
 
 .carousel-inner {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     width: 100%;
 }
@@ -190,5 +197,10 @@ onMounted(() => {
     align-items: center;
     flex-direction: column;
     flex: 1;
+}
+
+a {
+    color: white;
+    text-decoration: none;
 }
 </style>

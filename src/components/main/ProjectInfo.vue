@@ -25,7 +25,7 @@
                                 </div>
                                 <br>    
                                 <div class="actions-container gap-3">
-                                    <a class="btn btn-light" :href="project.githubUrl">깃허브</a> 
+                                    <a class="btn btn-light" target="_blank" :href="project.githubUrl">깃허브</a> 
                                     <div v-if="project.url">
                                         <a class="btn btn-light" :href="project.url">바로가기</a> 
                                     </div>
