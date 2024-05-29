@@ -15,7 +15,10 @@ const router = createRouter({
       name : 'project',
       component : ProjectView
     }
-  ]
+  ],
+  scrollBehavior() {
+    return { top : 0 }
+  }
 })
 
 export default router
