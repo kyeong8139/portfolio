@@ -13,7 +13,7 @@
                         <div class="contact-container">
                             <p>Email <a href="mailto:kyeong8139@gmail.com">kyeong8139@gmail.com</a></p>
                             <p>Github <a href="https://github.com/kyeong8139">https://github.com/kyeong8139</a></p>
-                            <p>Tistory <a href="https://kyeong8139.tistory.com/">디벨로퍼 벨롭스쿨</a></p>
+                            <p>Tistory <a href="https://kyeong8139.tistory.com/">https://kyeong8139.tistory.com/</a></p>
                         </div>
                     </div>
                 </div>
