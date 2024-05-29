@@ -54,7 +54,7 @@ import { useProjectStore } from '@/stores/project';
 const store = useProjectStore();
 
 const imgSrc = function (mainImage) {
-    return `src/assets/${mainImage}`
+    return `/src/assets/${mainImage}`
 }
 
 const setMaxHeightForCarousels = async () => {
