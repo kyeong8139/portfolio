@@ -52,7 +52,7 @@ import { useProjectStore } from '../../stores/project';
 const projectStore = useProjectStore();
 
 const imgSrc = function(mainImage) {
-    return `../src/assets/${mainImage}`
+    return `/src/assets/${mainImage}`
 }
 
 const router = useRouter()
